@@ -48,14 +48,13 @@ def take_command():
 	with sr.Microphone() as source:
 		print('I am Listening')
 		audio = r.listen(source)
-		# noinspection PyBroadException
 		try:
-			command = r.recongize_google(audio, language='en-in')
-			print(f'user said:{command}\n')
+			statement = r.recongize_google(audio, language='en-in')
+			print(f'user said:{statement}\n')
 		except Exception:
 			speak('Pardon me, please repeat')
 			return 'None'
-		return command
+		return statement
 
 
 speak(load)
@@ -72,7 +71,7 @@ if __name__ == '__main__':
 			print('Your ai assistant is logging off')
 			break
 
-		if 'wikipedia' in statement:
+		if 'open wikipedia' in statement:
 			speak('searching wikipedia.....')
 			statement = statement.replace('wikipedia', '')
 			results = wikipedia.summary(statement, sentences=5)
